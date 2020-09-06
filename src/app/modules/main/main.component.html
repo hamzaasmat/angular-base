@@ -1,0 +1,125 @@
+<mat-sidenav-container class="example-container" style="height: 100vh !important; overflow-y: auto !important;">
+    <mat-sidenav class="main-sidenav" #sidenav mode="side" [(opened)]="opened">
+        <div class="sidenav-header">
+            {{navbarTitle}}
+        </div>
+        <div class="sidenave-body">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let item of userMenu; let i = index"
+                    [hideToggle]="item.subMenu.length == 0" (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false" [disabled]="item.subMenu.length == 0"
+                    [ngClass]="{'active-dropdown': panelOpenState == true && item.subMenu.length != 0}">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <a *ngIf="item.subMenu.length == 0" [routerLink]="item.redirectTo" routerLinkActive="active">
+                                <span [innerHTML]="item.icon | safeHtml" class="icon"></span>
+                                <span>{{item.caption}}</span>
+                            </a>
+                            <a *ngIf="item.subMenu.length != 0">
+                                &nbsp;&nbsp;{{item.caption}}
+                            </a>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <ul>
+                            <li *ngFor="let sub of item.subMenu">
+                                <a [routerLink]="sub.redirectTo" routerLinkActive="active">
+                                    {{sub.title}}
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-panel-description>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+        <mat-toolbar class="main-toolbar" [ngClass]="{'main-sidenav-open': check == true}">
+            <span>
+                <button (click)="sidenav.toggle()" (click)="checkFn()" class="user-menu">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-08-25-063451/theme/html/demo1/dist/../src/media/svg/icons/Text/Menu.svg--><svg
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <rect fill="#000000" x="4" y="5" width="16" height="3" rx="1.5" />
+                                <path
+                                    d="M5.5,15 L18.5,15 C19.3284271,15 20,15.6715729 20,16.5 C20,17.3284271 19.3284271,18 18.5,18 L5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z M5.5,10 L18.5,10 C19.3284271,10 20,10.6715729 20,11.5 C20,12.3284271 19.3284271,13 18.5,13 L5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 Z"
+                                    fill="#000000" opacity="0.3" />
+                            </g>
+                        </svg>
+                        <!--end::Svg Icon--></span>
+                    <!-- <span>Menu</span> -->
+                </button>
+            </span>
+            <span>
+                <button mat-button>Productivty Score</button>
+            </span>
+            <span class="spacer"></span>
+            <span>
+                <button class="user-menu">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <rect fill="#000000" opacity="0.3" x="4" y="4" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="4" y="10" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="10" y="4" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="10" y="10" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="16" y="4" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="16" y="10" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="4" y="16" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="10" y="16" width="4" height="4" rx="2" />
+                                <rect fill="#000000" x="16" y="16" width="4" height="4" rx="2" />
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </span>
+            <span>
+                <button class="user-menu">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24" />
+                                <path
+                                    d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
+                                    fill="#000000" />
+                                <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5" />
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </span>
+            <span>
+                <button [matMenuTriggerFor]="menu" class="user-menu">
+                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                            height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path
+                                    d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z"
+                                    fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                <path
+                                    d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                    fill="#000000" fill-rule="nonzero" />
+                            </g>
+                        </svg>
+                    </span>
+                    <span>Admin</span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>User</button>
+                    <button mat-menu-item (click)="logout()">Sign out</button>
+                </mat-menu>
+            </span>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
