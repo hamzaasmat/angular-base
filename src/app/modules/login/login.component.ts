@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
   ) { }
   public returnUrl: string;
+  public passwordToggle: boolean = false;
   public auth: Login = {
     email: 'admin@gmail.com',
     password: '1234abcd'
@@ -23,9 +24,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
-    if(this._authService.getToken){
+    if (this._authService.getToken) {
       this._router.navigate(['/admin']);
     }
+  }
+
+  viewPassword() {
+    this.passwordToggle = !this.passwordToggle;
   }
 
   login() {

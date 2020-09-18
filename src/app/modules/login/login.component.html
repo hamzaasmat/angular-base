@@ -1,23 +1,35 @@
-<div class="login-parent p-5 login-background">
+<div class="login-parent login-background">
     <div class="login-parent login-wrapper">
         <div class="crow">
             <div class="ccol-6 test">
-                <img src="./../../../assets/images/login.png" width="70%" alt="">
-                <div class="note">
-                    <h3>Welcome</h3>
-                    <p>Don't have an account?Create your account it takes less than a minute. Create your account it
-                        takes less than a minute</p>
+                <img src="./../../../assets/images/login.png" alt="">
+                <div class="login-content">
+                    <div class="note">
+                        <h3>Welcome</h3>
+                        <p>Don't have an account?Create your account it takes less than a minute. Create your account it
+                            takes less than a minute</p>
+                    </div>
                 </div>
+
             </div>
             <div class="ccol-6">
                 <div class="login-form">
                     <div class="login-form-wrapper">
-                    <h3>LOGIN</h3>
-                        <input class="login-input" type="text" name="email" [(ngModel)]="auth.email">
-                        <input class="login-input" type="password" name="password" [(ngModel)]="auth.password">
-                    
-                    <button class="login-btn" (click)="login()">Login</button>
-                </div>
+                        <h3>LOGIN</h3>
+                        <div class="tag-line">Please login to continue</div> <br>
+                        <div class="group">
+                            <img src="../../../assets/icons/SVG/user.svg" alt="">
+                            <input class="login-input" type="text" name="email" placeholder="Username" [(ngModel)]="auth.email">
+                        </div>
+                        <div class="group">
+                            <!-- <img src="../../../assets/icons/SVG/lo" alt=""> -->
+                            <img [src]="passwordToggle ? '../../../assets/icons/SVG/lock-open.svg':'../../../assets/icons/SVG/lock-closed.svg'" alt="">
+                            <input class="login-input" [type]="passwordToggle ? 'text':'password'" name="password" placeholder="Password" [(ngModel)]="auth.password">
+                            <label for="" class="showPass" (click)="viewPassword()">{{passwordToggle ? 'Hide': 'Show'}}</label>
+                        </div>
+
+                        <button class="login-btn" (click)="login()">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
