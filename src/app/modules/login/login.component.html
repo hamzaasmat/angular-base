@@ -1,3 +1,25 @@
-<input type="text" name="email" [(ngModel)]="auth.email">
-<input type="password" name="password" [(ngModel)]="auth.password">
-<button (click)="login()">login</button>
+<div class="login-parent p-5 login-background">
+    <div class="login-parent login-wrapper">
+        <div class="crow">
+            <div class="ccol-6 test">
+                <img src="./../../../assets/images/login.png" width="70%" alt="">
+                <div class="note">
+                    <h3>Welcome</h3>
+                    <p>Don't have an account?Create your account it takes less than a minute. Create your account it
+                        takes less than a minute</p>
+                </div>
+            </div>
+            <div class="ccol-6">
+                <div class="login-form">
+                    <div class="login-form-wrapper">
+                    <h3>LOGIN</h3>
+                        <input class="login-input" type="text" name="email" [(ngModel)]="auth.email">
+                        <input class="login-input" type="password" name="password" [(ngModel)]="auth.password">
+                    
+                    <button class="login-btn" (click)="login()">Login</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
