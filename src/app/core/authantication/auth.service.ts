@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpService, EndPoints } from '../services';
 import { Login } from 'src/app/shared/models';
 import { Observable } from 'rxjs';
-
+import { HttpRestService } from '@services';
+import { EndPoints } from '@services';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends HttpService {
+export class AuthService extends HttpRestService {
 
     public userLogin(data: Login): Observable<any>{
         let body = JSON.stringify({

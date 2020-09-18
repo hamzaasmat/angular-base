@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, first } from 'rxjs/operators';
-import { EndPoints } from './index';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EndPoints } from '../const';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class HttpRestService {
 
   constructor(
     private _http: HttpClient,
